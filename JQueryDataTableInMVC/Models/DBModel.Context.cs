@@ -12,6 +12,8 @@ namespace JQueryDataTableInMVC.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DBModels : DbContext
     {
@@ -26,5 +28,10 @@ namespace JQueryDataTableInMVC.Models
         }
     
         public virtual DbSet<Employee> Employees { get; set; }
+    
+        public virtual ObjectResult<GetEmployees_Result> GetEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEmployees_Result>("GetEmployees");
+        }
     }
 }
