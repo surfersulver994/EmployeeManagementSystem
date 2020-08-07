@@ -29,9 +29,14 @@ namespace JQueryDataTableInMVC.Models
     
         public virtual DbSet<Employee> Employees { get; set; }
     
-        public virtual ObjectResult<GetEmployees_Result> GetEmployees()
+        public virtual ObjectResult<Employee> GetEmployees()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEmployees_Result>("GetEmployees");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetEmployees");
+        }
+    
+        public virtual ObjectResult<Employee> GetEmployees(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetEmployees", mergeOption);
         }
     }
 }

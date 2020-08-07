@@ -33,7 +33,7 @@
         </EntityType>
         <EntityContainer Name="DBModels" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <FunctionImport Name="GetEmployees" ReturnType="Collection(EmployeeDBModel.GetEmployees_Result)" />
+          <FunctionImport Name="GetEmployees" EntitySet="Employees" ReturnType="Collection(EmployeeDBModel.Employee)" />
         </EntityContainer>
         <ComplexType Name="GetEmployees_Result">
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
@@ -58,14 +58,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetEmployees" FunctionName="EmployeeDBModel.Store.GetEmployees">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="EmployeeDBModel.GetEmployees_Result">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

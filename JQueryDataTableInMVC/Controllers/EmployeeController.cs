@@ -18,12 +18,12 @@ namespace JQueryDataTableInMVC.Controllers
 
         public ActionResult GetList()
         {
-            using (DBModels db = new DBModels())
-            {
-                var empList = db.Employees.ToList<Employee>();
-                return Json(new { data = empList }, JsonRequestBehavior.AllowGet);
-            }
-        
+
+            var db = new DBModels();
+            var empList = db.GetEmployees();
+            return Json(new { data = empList }, JsonRequestBehavior.AllowGet);
+
+
         }
-	}
+    }
 }
